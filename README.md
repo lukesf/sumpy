@@ -8,6 +8,6 @@ Micro projects related to Raspberry pi sump pump monitoring.
 * Backup/cron scripts 
   
 ## References
-* Raspi-sump - Ultrasonic sump pump monior https://www.linuxnorth.org/raspi-sump/
+* Heavily leverages Raspi-sump - Ultrasonic sump pump monior https://www.linuxnorth.org/raspi-sump/
 * https://tutorials-raspberrypi.com/raspberry-pi-ultrasonic-sensor-hc-sr04/
 * https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/overview
