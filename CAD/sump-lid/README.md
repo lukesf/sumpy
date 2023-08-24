@@ -1,5 +1,7 @@
 # Home Depot Sump tub lid monitor 
+Raspi-sump case for [Home Depot sump lid](https://www.homedepot.com/p/Everbilt-18-in-Sump-Pump-Basin-Lid-SF60913/204733082)
 
+![Home Depot lid](sump-lid.png)
 ![SumpLid Body](SumpLid_body.png)
 ![SumpLid Lid](SumpLid_lid.png)
 
