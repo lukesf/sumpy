@@ -1,6 +1,6 @@
 # Sump monitor inside a PVC pipe
 
-![sump-pipe-plug](sump-pipe-plug.pngg)
+![sump-pipe-plug](sump-pipe-plug.png)
 
 
 This is a cap for the end of a PVC pipe.
