@@ -1,8 +1,11 @@
-# Temperature sensor 
+# Temperature sensor (ds18b20) 
 * Read and log temperature sensor via cron job
 
+Wired like this:
+![Water proof probe](https://cdn-learn.adafruit.com/assets/assets/000/075/364/original/temperature___humidity_ds18b20-waterproof-40pin_bb.png?1557225868)
   
 Notes:
+* Temperature sensor is awesome I've used them repeatedly for adjusting for thermal expansion etc simple, no sensitive adc required. 
 * need to enable 1 wire interface via raspi-config
 * python script reads sensor
 * crontab appends to date named file.  
