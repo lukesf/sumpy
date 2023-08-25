@@ -25,8 +25,8 @@ def get_last_n_hours_readings(hours):
 
     for filename in last_files:
         date = filename.strip('/home/pi/raspi-sump/csv/waterlevel-').strip('.csv')
-        my_parser = lambda ti: datetime.strptime(date+" EST "+ti, '%Y%m%d %Z %H:%M:%S')
-        df = pd.read_csv(filename, names=['ti','level'], parse_dates=['ti'], date_parser=my_parser)
+        df = pd.read_csv(filename, names=['ti','level'])
+        df['ti'] = pd.to_datetime(date + " EST " + df['ti'], format='%Y%m%d %Z %H:%M:%S')
         li.append(df)
     frame = pd.concat(li, ignore_index=True)
     return frame.tail(hours*60)
@@ -34,8 +34,8 @@ def get_last_n_hours_readings(hours):
 # Reading one large file
 def get_last_n_hours_temps(hours):
     temp_path = "/home/pi/raspi-sump/csv/temp.csv"
-    my_parser = lambda ti: datetime.strptime(ti, '%Y-%m-%d %H:%M:%S')
-    frame = pd.read_csv(temp_path, names=['ti','c','f'], parse_dates=['ti'], date_parser=my_parser)
+    frame = pd.read_csv(temp_path, names=['ti','c','f'])
+    frame['ti'] = pd.to_datetime(frame['ti'], format='%Y-%m-%d %H:%M:%S')
     return frame.tail(hours*60)
 
 # Reading individual dated files
@@ -45,9 +45,9 @@ def get_last_n_hours_temp_files(hours):
     last_files = get_last_n_days_files(temp_path, days)
     li = []
 
-    my_parser = lambda ti: datetime.strptime(ti, '%Y-%m-%d %H:%M:%S')
     for filename in last_files:
-        df = pd.read_csv(filename, names=['ti','c','f'], parse_dates=['ti'], date_parser=my_parser)
+        df = pd.read_csv(filename, names=['ti','c','f'])
+        df['ti'] = pd.to_datetime(df['ti'], format='%Y-%m-%d %H:%M:%S')
         li.append(df)
     frame = pd.concat(li, ignore_index=True)
     return frame.tail(hours*60)
@@ -61,12 +61,13 @@ st.write('You selected:', option)
 df = get_last_n_hours_readings(int(option))
 #print(df)
 #print(df['ti'].iloc[0])
-df['ti'] = df['ti'].dt.tz_localize("US/Eastern")
+#df['ti'] = df['ti'].dt.tz_localize("US/Eastern")
 
 df = df.set_index('ti')
 
 st.line_chart(df)
 st.dataframe(df[::-1].head(30))
+print(df[::-1].head(30))
 
 
 temp = get_last_n_hours_temp_files(int(option))
@@ -76,8 +77,9 @@ temp=temp[['ti','c']]
 temp = temp.set_index('ti')
 #temp = temp.sort_index()
 
-st.line_chart(temp)
+#st.line_chart(temp)
 st.dataframe(temp[::-1].head(30))
+print(temp[::-1].head(30))
 # Streamlit widgets automatically run the script from top to bottom. Since
 # this button is not connected to any other logic, it just causes a plain
 # rerun.
