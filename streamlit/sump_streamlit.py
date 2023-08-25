@@ -65,9 +65,9 @@ df = get_last_n_hours_readings(int(option))
 
 df = df.set_index('ti')
 
-st.line_chart(df)
+#st.line_chart(df)
 st.dataframe(df[::-1].head(30))
-print(df[::-1].head(30))
+#print(df[::-1].head(30))
 
 
 temp = get_last_n_hours_temp_files(int(option))
@@ -79,7 +79,8 @@ temp = temp.set_index('ti')
 
 #st.line_chart(temp)
 st.dataframe(temp[::-1].head(30))
-print(temp[::-1].head(30))
+#print(temp[::-1].head(30))
+
 # Streamlit widgets automatically run the script from top to bottom. Since
 # this button is not connected to any other logic, it just causes a plain
 # rerun.
