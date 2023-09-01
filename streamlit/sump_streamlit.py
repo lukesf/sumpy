@@ -11,6 +11,7 @@ import numpy as np
 import streamlit as st
 import pandas as pd
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 def get_last_n_days_files(fpath,days):
     list_of_files = glob.glob(fpath) # * means all if need specific format then *.csv
@@ -63,9 +64,26 @@ df = get_last_n_hours_readings(int(option))
 #print(df['ti'].iloc[0])
 #df['ti'] = df['ti'].dt.tz_localize("US/Eastern")
 
-df = df.set_index('ti')
 
+### BOO line_chart stopped working 
+#df = df.set_index('ti')
 #st.line_chart(df)
+###
+# Using matplotlib instead
+
+# Define X and Y variable data
+x = df['ti'].to_numpy()
+y = df['level'].to_numpy()
+# Make plot
+fig, ax = plt.subplots()
+ax.plot(x, y)
+ax.set_xlabel("Time")  # add X-axis label
+ax.set_ylabel("Centermeters")  # add Y-axis label
+ax.set_title("Water level")  # add title
+ax.grid(True)
+st.pyplot(fig)
+
+
 st.dataframe(df[::-1].head(30))
 #print(df[::-1].head(30))
 
@@ -74,10 +92,25 @@ temp = get_last_n_hours_temp_files(int(option))
 temp['ti'] = temp['ti'].dt.tz_localize("US/Eastern")
 temp['c'].astype(float)
 temp=temp[['ti','c']]
-temp = temp.set_index('ti')
 #temp = temp.sort_index()
 
+### BOO line_chart stopped working 
+#temp = temp.set_index('ti')
 #st.line_chart(temp)
+###
+# Using matplotlib instead
+
+# Define X and Y variable data
+x = temp['ti'].to_numpy()
+y = temp['c'].to_numpy()
+# Make plot
+fig, ax = plt.subplots()
+ax.plot(x, y)
+ax.set_xlabel("Time")  # add X-axis label
+ax.set_ylabel("Celsius")  # add Y-axis label
+ax.set_title("Temperature")  # add title
+ax.grid(True)
+st.pyplot(fig)
 st.dataframe(temp[::-1].head(30))
 #print(temp[::-1].head(30))
 

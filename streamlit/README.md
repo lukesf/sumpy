@@ -17,6 +17,7 @@ sudo pip3 install numpy pandas plotly
 ```
 sudo pip3 install streamlit==0.62.0
 ```
+* There also seems to be a bug with dataframes and line_chart so reverted to pyplot
 **For 64bit OSes can just use latest:**
 ```
 sudo pip3 install streamlit
