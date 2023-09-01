@@ -1,4 +1,5 @@
 #  Streamlit on Raspi 
+![Streamlit Dashboard](streamlit-dashboard.jpg)
 Streamlit is awesome way to get userspace httpd dashboard  
 Want to use pandas so some dependencies :-/ 
 
